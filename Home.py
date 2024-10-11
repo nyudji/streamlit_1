@@ -1,5 +1,4 @@
 import streamlit as st
-import pandas as pd
 import os
 
 st.set_page_config(page_title='Home')
@@ -7,8 +6,6 @@ st.set_page_config(page_title='Home')
 st.title('Home')
 st.sidebar.success('Selecione uma página acima')
 
-
-page = 'Home'
 # Menu de navegação
 page = st.sidebar.selectbox("Navegação", ["Home", "Pizza", "Contratos"])
 
@@ -22,7 +19,8 @@ else:
 
     # Verifica se o arquivo existe antes de tentar carregá-lo
     if os.path.exists(file_path):
+        st.write(f"Carregando a página: {file_path}")  # Mensagem de depuração
         with open(file_path) as file:
             exec(file.read())
     else:
-        st.error("Página não encontrada.")
+        st.error(f"Página não encontrada: {file_path}")  # Mensagem de erro detalhada
