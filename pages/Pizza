@@ -1,34 +1,22 @@
 import streamlit as st
 import pandas as pd
+from sklearn.linear_model import LinearRegression
 
-st.set_page_config(page_title='Contratos')
+st.set_page_config(page_title='Pizza')
+pizza_df = pd.read_csv("pizzas.csv")
 
-with st.container():
-    st.title('Contratos 2024')
-    st.write('Inforamações sobre contratos ao longo do ano de 2024')
-    st.write ('Quer saber mais? [clique aqui](www.google.com.br)')
-    print('oi')
+modelo = LinearRegression()
+x = pizza_df[["diametro"]]
+y = pizza_df[["preco"]]
 
-@st.cache_data
-def carregar_dados():
-    tabela = pd.read_csv('resultados.csv')
-    return tabela
+modelo.fit(x, y)
 
-with st.container():
-    st.write('--------')
-    st.title('Dash Contratos')
-    dados = carregar_dados()
-    qtd_dias = st.selectbox('Selecione o periodo',['Semanal','Quinzenal','Mensal','Ano'])
-    if(qtd_dias=='Semanal'):
-        nmrdias = 7
-    elif(qtd_dias=='Quinzenal'):
-        nmrdias = 15
-    elif(qtd_dias=='Mensal'):
-        nmrdias = 30
-    else:
-        nmrdias = 360
-    dados = dados[-nmrdias:]
-    st.area_chart(dados, x='Data', y='Contratos')
-    
+st.title("Prevendo o valor de uma pizza!")
+st.divider()
 
-    
+diametro = st.number_input("Digite o tamanho do diâmetro da pizza: ")
+
+if diametro:
+    preco_previsto = modelo.predict([[diametro]])[0][0]
+    st.write(f"O valor da pizza com diâmetro de {diametro:.2f} cm é de R${preco_previsto:.2f}.")
+    st.balloons()
