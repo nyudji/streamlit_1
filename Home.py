@@ -1,7 +1,5 @@
 import streamlit as st
 import pandas as pd
-import pages.Pizza as pg_pizza  # Importe suas páginas
-import pages.Contratos as pg_contratos
 
 st.set_page_config(page_title='Home')
 
