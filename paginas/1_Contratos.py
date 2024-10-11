@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 
+
 with st.container():
     st.title('Contratos 2024')
     st.write('Inforamações sobre contratos ao longo do ano de 2024')
