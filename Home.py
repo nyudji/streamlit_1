@@ -8,6 +8,10 @@ st.title('Home')
 st.sidebar.success('Selecione uma página acima')
 
 
+page = 'Home'
+# Menu de navegação
+page = st.sidebar.selectbox("Navegação", ["Home", "Pizza", "Contratos"])
+
 # Função para carregar a página selecionada
 if page == "Home":
     st.write("Bem-vindo à Página Principal!")
