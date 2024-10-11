@@ -4,7 +4,7 @@ import pandas as pd
 st.set_page_config(page_title='Home')
 
 st.title('Home')
-st.sidebar('Selecione uma página acima')
+st.sidebar.success('Selecione uma página acima')
 st.write('Pagina principal Streamlit')
 
 
