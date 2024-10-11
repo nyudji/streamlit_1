@@ -13,8 +13,8 @@ page = st.sidebar.selectbox("Navegação", ["Home", "Pizza", "Contratos"])
 if page == "Home":
     st.write("Bem-vindo à Página Principal!")
 else:
-    # Construindo o caminho para o arquivo da página selecionada na pasta pages
-    base_dir = os.path.dirname(__file__)  # Diretório do arquivo atual (Home.py)
+    # Diretório onde o arquivo Home.py está localizado
+    base_dir = os.path.dirname(os.path.abspath(__file__))  # Caminho absoluto do diretório atual
     file_path = os.path.join(base_dir, "pages", f"{page}.py")  # Caminho para o arquivo da página
 
     # Verifica se o arquivo existe antes de tentar carregá-lo
